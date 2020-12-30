@@ -1,0 +1,84 @@
+Sub AUTO_Template()
+   Application.DisplayAlerts = False
+   
+   Dim rng As Range
+   Set rng = Sheets("Accounts List").Range("A1:A93")
+   
+   For Each Item In rng
+        Worksheets("702101").Copy before:=Sheets(Sheets.Count)
+        
+        If Item <> "702101" Then
+            ActiveSheet.Name = Item
+        End If
+   
+   Next Item
+   Application.DisplayAlerts = True
+    
+End Sub
+
+Sub sheet_count()
+
+MsgBox Sheets.Count
+
+End Sub
+
+
+Sub final_put_back()
+
+Application.DisplayAlerts = False
+
+Dim arr() As Variant
+Dim current_wb As Workbook
+Dim copy_wb As Workbook 'copy from these sheets
+Dim sht As Worksheet
+Dim sht_copy As Worksheet
+Dim sht_name As Variant
+Dim sht_name_copy As Variant
+Dim new_sht As Worksheet
+
+
+
+
+arr = Application.GetOpenFilename("Excel Files,*.xls*", 2, , , True)
+
+If arr(1) <> "False" Then
+    For i = LBound(arr) To UBound(arr)
+        Set copy_wb = Workbooks.Open(arr(i))
+        
+            
+                For Each sht_copy In copy_wb.Sheets
+                    
+                If sht_copy.Name = "727104" Then
+                
+                    sht_copy.Activate
+                    
+                                Stop
+                    
+                'Dim answer As Integer
+
+                'answer = MsgBox("Text", vbQuestion + vbYesNo + vbDefaultButton2, "Continue")
+                
+                         
+                    'If answer = vbYes Then
+                
+                    'End If
+                
+                End If
+               
+                         
+ 
+                        
+                            
+                     
+
+                      
+                    
+            Next sht_copy 'OK
+    copy_wb.Close
+    Next i 'ok
+End If 'ok
+
+Application.DisplayAlerts = True
+
+End Sub
+
